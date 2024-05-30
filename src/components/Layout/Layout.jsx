@@ -1,5 +1,5 @@
 // Layout.jsx
-import { AppBar } from './AppBar';
+import AppBar from "../AppBar/AppBar";
 
 export const Layout = ({ children }) => {
   return (
