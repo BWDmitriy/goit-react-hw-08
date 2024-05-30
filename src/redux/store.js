@@ -1,22 +1,23 @@
+// store.js
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // Використовуємо локальне сховище
-import contactsReducer from './contactsSlice';
-import filtersReducer from './filtersSlice';
+import storage from 'redux-persist/lib/storage';
+import contactsReducer from './contacts/slice';
+import filtersReducer from './filters/slice';
+import { authReducer } from './auth/slice';
 
-// Конфігурація для збереження поля items зі слайса контактів
-const contactsPersistConfig = {
-  key: 'contacts',
+const authPersistConfig = {
+  key: 'auth',
   storage,
-  whitelist: ['items'], // Зберігаємо тільки поле items
+  whitelist: ['token'],
 };
 
-// Застосовуємо конфігурацію до редюсера слайса контактів
-const persistedContactsReducer = persistReducer(contactsPersistConfig, contactsReducer);
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
 const store = configureStore({
   reducer: {
-    contacts: persistedContactsReducer,
+    auth: persistedAuthReducer,
+    contacts: contactsReducer,
     filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>
