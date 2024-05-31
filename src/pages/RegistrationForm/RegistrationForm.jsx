@@ -36,7 +36,7 @@ const RegistrationForm = () => {
         <Field id="password" name="password" type="password" placeholder="Enter your password" />
         <ErrorMessage name="password" component="div" />
 
-        {authError && <div>{authError}</div>}
+        {authError && <div>{authError.message || 'An error occurred'}</div>}
 
         <button type="submit">Register</button>
       </Form>
