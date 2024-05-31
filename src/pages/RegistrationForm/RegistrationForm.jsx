@@ -1,10 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/operations';
+import { selectAuthError } from '../../redux/auth/selectors';
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const authError = useSelector(selectAuthError);
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Required'),
@@ -33,6 +35,8 @@ const RegistrationForm = () => {
         <label htmlFor="password">Password</label>
         <Field id="password" name="password" type="password" placeholder="Enter your password" />
         <ErrorMessage name="password" component="div" />
+
+        {authError && <div>{authError}</div>}
 
         <button type="submit">Register</button>
       </Form>
