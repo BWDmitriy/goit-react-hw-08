@@ -1,11 +1,15 @@
-// Navigation.jsx
 import { NavLink } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 export const Navigation = () => {
   return (
     <nav>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/contacts">Contacts</NavLink>
+      <Button component={NavLink} to="/" color="inherit">
+        Home
+      </Button>
+      <Button component={NavLink} to="/contacts" color="inherit">
+        Contacts
+      </Button>
     </nav>
   );
 };

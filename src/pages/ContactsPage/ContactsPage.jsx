@@ -5,6 +5,7 @@ import { selectContacts, selectLoading, selectError } from '../../redux/contacts
 import ContactList from '../../components/ContactList/ContactList';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import Searchbox from '../../components/Searchbox/Searchbox';
+import { Box, Typography, CircularProgress, Alert } from '@mui/material';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -17,14 +18,20 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Contacts</h1>
-      <ContactForm />
-      <Searchbox />
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      <ContactList contacts={contacts} />
-    </div>
+    <Box mt={4}>
+      <Typography variant="h4" textAlign="center">Contacts</Typography>
+      <Box display="flex" justifyContent="center" mt={2}>
+        <ContactForm />
+      </Box>
+      <Box display="flex" justifyContent="center" mt={2}>
+        <Searchbox />
+      </Box>
+      {isLoading && <Box display="flex" justifyContent="center" mt={2}><CircularProgress /></Box>}
+      {error && <Box display="flex" justifyContent="center" mt={2}><Alert severity="error">{error}</Alert></Box>}
+      <Box mt={2}>
+        <ContactList contacts={contacts} />
+      </Box>
+    </Box>
   );
 };
 

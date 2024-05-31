@@ -1,11 +1,11 @@
+import { Box } from '@mui/material';
 import LoginForm from '../LoginForm/LoginForm';
 
 const LoginPage = () => {
   return (
-    <div>
-      <h1>Login</h1>
+    <Box display="flex" justifyContent="center" mt={4}>
       <LoginForm />
-    </div>
+    </Box>
   );
 };
 

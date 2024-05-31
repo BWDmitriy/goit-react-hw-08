@@ -1,11 +1,11 @@
-import React from 'react';
+import { Typography, Box } from '@mui/material';
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>Welcome to the Contact Book</h1>
-      <p>Manage your contacts easily and securely.</p>
-    </div>
+    <Box textAlign="center" mt={4}>
+      <Typography variant="h3">Welcome to the Contact Book</Typography>
+      <Typography variant="body1">Manage your contacts easily and securely.</Typography>
+    </Box>
   );
 };
 

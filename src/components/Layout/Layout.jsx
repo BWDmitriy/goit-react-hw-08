@@ -1,11 +1,13 @@
-// Layout.jsx
-import AppBar from "../AppBar/AppBar";
+import { Container } from '@mui/material';
+import AppBar from '../AppBar/AppBar';
 
 export const Layout = ({ children }) => {
   return (
     <div>
       <AppBar />
-      <main>{children}</main>
+      <Container>
+        <main>{children}</main>
+      </Container>
     </div>
   );
 };
