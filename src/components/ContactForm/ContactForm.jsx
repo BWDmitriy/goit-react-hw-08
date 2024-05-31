@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contactsOps';
+import { TextField, Button, Box, Typography } from '@mui/material';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -25,17 +26,34 @@ const ContactForm = () => {
         resetForm();
       }}
     >
-      <Form className="contact-form">
-        <label htmlFor="name">Name</label>
-        <Field id="name" name="name" placeholder="Enter name" />
-        <ErrorMessage name="name" component="div" />
-
-        <label htmlFor="number">Number</label>
-        <Field id="number" name="number" placeholder="Enter number" />
-        <ErrorMessage name="number" component="div" />
-
-        <button type="submit">Add Contact</button>
-      </Form>
+      {({ handleChange, values }) => (
+        <Form>
+          <Box display="flex" flexDirection="column" alignItems="center" gap={2} maxWidth={400} mx="auto">
+            <Typography variant="h6">Add New Contact</Typography>
+            <TextField
+              id="name"
+              name="name"
+              label="Name"
+              value={values.name}
+              onChange={handleChange}
+              fullWidth
+            />
+            <ErrorMessage name="name" component="div" style={{ color: 'red' }} />
+            <TextField
+              id="number"
+              name="number"
+              label="Number"
+              value={values.number}
+              onChange={handleChange}
+              fullWidth
+            />
+            <ErrorMessage name="number" component="div" style={{ color: 'red' }} />
+            <Button type="submit" variant="contained" color="primary">
+              Add Contact
+            </Button>
+          </Box>
+        </Form>
+      )}
     </Formik>
   );
 };
