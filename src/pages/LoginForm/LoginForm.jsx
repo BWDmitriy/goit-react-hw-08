@@ -25,7 +25,7 @@ const LoginForm = () => {
     >
       {({ handleSubmit, handleChange, values }) => (
         <Form onSubmit={handleSubmit}>
-          <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
+          <Box display="flex" flexDirection="column" alignItems="center" gap={2} maxWidth={400} mx="auto">
             <Typography variant="h4">Login</Typography>
             <TextField
               id="email"
