@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createSelector } from 'reselect'; // Добавьте этот импорт
-import { fetchContacts, addContact, deleteContact, updateContact } from './contactsOps';
+import { createSelector } from 'reselect';
+import { fetchContacts, addContact, deleteContact} from './contactsOps';
 import { selectNameFilter } from './filtersSlice';
 
 const initialState = {
@@ -68,6 +68,7 @@ const contactsSlice = createSlice({
   },
 });
 
+// Функції-селектори для використання в useSelector
 export const selectContacts = (state) => state.contacts.items;
 export const selectLoading = (state) => state.contacts.loading;
 export const selectError = (state) => state.contacts.error;
@@ -83,4 +84,5 @@ export const selectFilteredContacts = createSelector(
   }
 );
 
+// Експортуємо редюсер слайса
 export default contactsSlice.reducer;

@@ -4,25 +4,36 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contactsOps';
 import { ListItem, ListItemText, IconButton, Typography, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import EditContactForm from '../EditContactForm/EditContactForm';
 
 export default function Contact({ id, name, number }) {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
 
   const handleDelete = () => {
     dispatch(deleteContact(id));
-    setOpen(false);
+    setOpenDelete(false);
     toast.success('Contact deleted successfully!');
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpenDelete = () => {
+    setOpenDelete(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
+
+  const handleClickOpenEdit = () => {
+    setOpenEdit(true);
+  };
+
+  const handleCloseEdit = () => {
+    setOpenEdit(false);
   };
 
   return (
@@ -30,9 +41,14 @@ export default function Contact({ id, name, number }) {
       <ListItem
         key={id}
         secondaryAction={
-          <IconButton edge="end" aria-label="delete" onClick={handleClickOpen}>
-            <DeleteIcon />
-          </IconButton>
+          <>
+            <IconButton edge="end" aria-label="edit" onClick={handleClickOpenEdit}>
+              <EditIcon />
+            </IconButton>
+            <IconButton edge="end" aria-label="delete" onClick={handleClickOpenDelete}>
+              <DeleteIcon />
+            </IconButton>
+          </>
         }
         sx={{ 
           borderBottom: '1px solid #ccc', 
@@ -59,8 +75,8 @@ export default function Contact({ id, name, number }) {
         />
       </ListItem>
       <Dialog
-        open={open}
-        onClose={handleClose}
+        open={openDelete}
+        onClose={handleCloseDelete}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -71,10 +87,24 @@ export default function Contact({ id, name, number }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleCloseDelete}>Cancel</Button>
           <Button onClick={handleDelete} autoFocus>
             Delete
           </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={openEdit}
+        onClose={handleCloseEdit}
+        aria-labelledby="edit-dialog-title"
+        aria-describedby="edit-dialog-description"
+      >
+        <DialogTitle id="edit-dialog-title">{"Edit Contact"}</DialogTitle>
+        <DialogContent>
+          <EditContactForm contact={{ id, name, number }} onClose={handleCloseEdit} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseEdit}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </>

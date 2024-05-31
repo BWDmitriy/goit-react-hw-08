@@ -1,3 +1,4 @@
+import React from 'react';
 import Contact from "../Contact/Contact";
 import { useSelector } from 'react-redux';
 import { selectFilteredContacts } from '../../redux/contactsSlice';
@@ -8,9 +9,9 @@ export default function ContactList() {
 
   return (
     <Box mt={2}>
-      {/* <Typography variant="h6" component="div" gutterBottom>
+      <Typography variant="h6" component="div" gutterBottom>
         Contact List
-      </Typography> */}
+      </Typography>
       <List sx={{ 
         width: '100%', 
         maxWidth: 360, 
