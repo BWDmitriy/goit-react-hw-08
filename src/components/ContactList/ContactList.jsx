@@ -1,8 +1,7 @@
-import React from 'react';
 import Contact from "../Contact/Contact";
 import { useSelector } from 'react-redux';
 import { selectFilteredContacts } from '../../redux/contactsSlice';
-import { List, Box } from '@mui/material';
+import { List, Box, Typography } from '@mui/material';
 
 export default function ContactList() {
   const filteredContacts = useSelector(selectFilteredContacts);
