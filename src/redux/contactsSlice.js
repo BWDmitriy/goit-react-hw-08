@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createSelector } from 'reselect'; // Добавьте этот импорт
+import { createSelector } from 'reselect';
 import { fetchContacts, addContact, deleteContact, updateContact } from './contactsOps';
 import { selectNameFilter } from './filtersSlice';
 
@@ -72,7 +72,6 @@ export const selectContacts = (state) => state.contacts.items;
 export const selectLoading = (state) => state.contacts.loading;
 export const selectError = (state) => state.contacts.error;
 
-// Мемоізований селектор для фільтрації контактів
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
   (contacts, filter) => {
