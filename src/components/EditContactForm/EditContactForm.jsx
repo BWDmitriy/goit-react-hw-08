@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { TextField, Button, Box } from '@mui/material';
-import { updateContact } from '../../redux/contactsOps';
+import { updateContact } from '../../redux/contacts/operations';
 
 const EditContactForm = ({ contact, onClose }) => {
   const dispatch = useDispatch();
